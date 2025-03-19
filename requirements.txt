@@ -1,0 +1,11 @@
+streamlit
+pandas
+openpyxl
+sentence-transformers
+torch
+transformers
+chardet
+python-dotenv
+openai==0.28
+fuzzywuzzy
+xlsxwriter
