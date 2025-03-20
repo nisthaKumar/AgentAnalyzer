@@ -10,7 +10,7 @@ from agents import (
 load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
-st.title("🔗 CSV-to-Excel Mapping App")
+st.title("🕵️‍♀️ AgentAnalyzer")
 
 uploaded_csvs = st.file_uploader("Upload CSV Files", type=["csv"], accept_multiple_files=True)
 uploaded_template = st.file_uploader("Upload Excel Template", type=["xlsx"])
