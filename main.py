@@ -1,0 +1,31 @@
+import streamlit as st
+import os
+import openai
+from dotenv import load_dotenv
+from agents import (
+    extract_csv, merge_strategy, merge_csv, data_mapping, 
+    template_context, ai_mapping, populate_template
+)
+
+load_dotenv()
+openai.api_key = os.getenv("OPENAI_API_KEY")
+
+st.title("🔗 CSV-to-Excel Mapping App")
+
+uploaded_csvs = st.file_uploader("Upload CSV Files", type=["csv"], accept_multiple_files=True)
+uploaded_template = st.file_uploader("Upload Excel Template", type=["xlsx"])
+
+if st.button("Process Files"):
+    csv_data = extract_csv.extract_csv_context(uploaded_csvs)
+    merge_strategy = merge_strategy.determine_merge_strategy(csv_data)
+    aggregated_dfs, aggregation_plan = merge_csv.aggregate_data(csv_data, merge_strategy['key_column'])
+    master_data = merge_csv.merge_csv_data(aggregated_dfs,merge_strategy['key_column'])
+    st.write("✅ CSVs Merged Successfully using key column:", master_data)
+    # master_data = merge_csv.merge_csv_data(csv_data, merge_strategy['key_column'], merge_strategy['strategy'])
+    template_fields = template_context.extract_template_context(uploaded_template)
+    # mapping = ai_mapping.ai_map_columns(master_data, template_fields)
+    # st.write("🔍 Debug: AI Mapping ->", mapping)
+    # final_file = populate_template.populate_template(master_data, mapping, uploaded_template)
+    final_file = populate_template.populate_template(master_data, uploaded_template)
+    if final_file:
+        st.download_button("📥 Download Processed Excel", data=final_file, file_name="populated_template.xlsx", mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
