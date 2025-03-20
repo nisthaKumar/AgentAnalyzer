@@ -3,8 +3,8 @@ import os
 import openai
 from dotenv import load_dotenv
 from agents import (
-    extract_csv, merge_strategy, merge_csv, data_mapping, 
-    template_context, ai_mapping, populate_template
+    extract_csv, merge_strategy, merge_csv, 
+    template_context, populate_template
 )
 
 load_dotenv()
