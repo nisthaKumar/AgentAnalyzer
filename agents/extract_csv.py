@@ -9,7 +9,7 @@ def extract_csv_context(uploaded_files):
         try:
             df = pd.read_csv(file, encoding="utf-8", on_bad_lines="skip")
             csv_data[file.name] = df
-            st.write(f"✅ Loaded {file.name}: {df.shape}")
+            # st.write(f"✅ Loaded {file.name}: {df.shape}")
         except Exception as e:
             st.error(f"⚠️ Error loading {file.name}: {e}")
 
