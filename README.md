@@ -61,4 +61,16 @@ AgentAnalyzer/
 └── .env                    # Environment variables (e.g., API keys)
 ```
 
+## Usage
+1. **Run the application**:
+   ```
+   streamlit run main.py
+   ```
+   Alternatively, the app is deployed on streamlit cloud. It can be found [here](https://agentanalyzer-l3bdngyhftzdbldbjwwpzt.streamlit.app/).
+   
+3. **Interact with the interface**:
+   - Upload your CSV files
+   - Provide an Excel template that defines the desired output structure.
+   - Initiate the transformation process.
+   - Download the AI-processed Excel file once the transformation is complete.
 
